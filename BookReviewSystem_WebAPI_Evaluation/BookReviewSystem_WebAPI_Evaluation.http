@@ -1,0 +1,6 @@
+@BookReviewSystem_WebAPI_Evaluation_HostAddress = http://localhost:5156
+
+GET {{BookReviewSystem_WebAPI_Evaluation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
