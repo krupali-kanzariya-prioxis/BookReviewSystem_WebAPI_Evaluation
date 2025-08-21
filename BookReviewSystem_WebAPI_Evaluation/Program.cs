@@ -62,6 +62,14 @@ namespace BookReviewSystem_WebAPI_Evaluation
           fv.RegisterValidatorsFromAssemblyContaining<ReviewRequestModelValidator>();
       });
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowFrontend",
+                    policy => policy
+                        .WithOrigins("http://localhost:3000") // your Next.js frontend
+                        .AllowAnyHeader()
+                        .AllowAnyMethod());
+            });
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -82,6 +90,7 @@ namespace BookReviewSystem_WebAPI_Evaluation
 
             app.UseAuthorization();
 
+            app.UseCors("AllowFrontend");
 
             app.MapControllers();
 
